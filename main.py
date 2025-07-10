@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 import requests
 
-
 load_dotenv()
 
 client = OpenAI(
@@ -38,11 +37,11 @@ async def handle_call(
             print(f"🤖 رد GPT: {gpt_reply}")
             response.say(gpt_reply, language="ar-SA")
 
-# ✨ اطلب سؤال جديد من المستخدم بعد الرد
-gather = Gather(input="speech", action="/call", method="POST", language="ar-SA", timeout=5)
-gather.say("هل لديك سؤال آخر؟", language="ar-SA")
-response.append(gather)
-response.say("لم أسمع شيئًا، سيتم إنهاء المكالمة.", language="ar-SA")
+            # ✨ اطلب سؤال جديد من المستخدم بعد الرد
+            gather = Gather(input="speech", action="/call", method="POST", language="ar-SA", timeout=5)
+            gather.say("هل لديك سؤال آخر؟", language="ar-SA")
+            response.append(gather)
+            response.say("لم أسمع شيئًا، سيتم إنهاء المكالمة.", language="ar-SA")
 
         except Exception as e:
             print(f"❌ GPT Error: {e}")
@@ -72,13 +71,3 @@ def ask_gpt(prompt):
     )
     response_json = response.json()
     return response_json["choices"][0]["message"]["content"].strip()
-
-
-#    chat_completion = client.chat.completions.create(
-#        "model": "mistralai/mistral-7b-instruct",
-#        messages=[
-#            {"role": "system", "content": "أنت مساعد صوتي ذكي لخدمة العملاء."},
-#            {"role": "user", "content": prompt}
-#        ]
-#    )
-#    return chat_completion.choices[0].message.content.strip()
