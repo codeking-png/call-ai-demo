@@ -37,6 +37,13 @@ async def handle_call(
             gpt_reply = ask_gpt(SpeechResult)
             print(f"🤖 رد GPT: {gpt_reply}")
             response.say(gpt_reply, language="ar-SA")
+
+# ✨ اطلب سؤال جديد من المستخدم بعد الرد
+gather = Gather(input="speech", action="/call", method="POST", language="ar-SA", timeout=5)
+gather.say("هل لديك سؤال آخر؟", language="ar-SA")
+response.append(gather)
+response.say("لم أسمع شيئًا، سيتم إنهاء المكالمة.", language="ar-SA")
+
         except Exception as e:
             print(f"❌ GPT Error: {e}")
             response.say("عذرًا، حدث خطأ أثناء المعالجة. حاول لاحقًا.", language="ar-SA")
