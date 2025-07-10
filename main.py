@@ -48,7 +48,7 @@ async def handle_call(
 
 def ask_gpt(prompt):
     chat_completion = client.chat.completions.create(
-        model="openrouter/gpt-3.5-turbo",
+        "model": "mistralai/mistral-7b-instruct",
         messages=[
             {"role": "system", "content": "أنت مساعد صوتي ذكي لخدمة العملاء."},
             {"role": "user", "content": prompt}
