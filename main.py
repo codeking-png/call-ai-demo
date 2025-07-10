@@ -62,11 +62,11 @@ def ask_gpt(prompt):
     }
 )
 
-    chat_completion = client.chat.completions.create(
-        "model": "mistralai/mistral-7b-instruct",
-        messages=[
-            {"role": "system", "content": "أنت مساعد صوتي ذكي لخدمة العملاء."},
-            {"role": "user", "content": prompt}
-        ]
-    )
+#    chat_completion = client.chat.completions.create(
+#        "model": "mistralai/mistral-7b-instruct",
+#        messages=[
+#            {"role": "system", "content": "أنت مساعد صوتي ذكي لخدمة العملاء."},
+#            {"role": "user", "content": prompt}
+#        ]
+#    )
     return chat_completion.choices[0].message.content.strip()
