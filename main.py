@@ -58,7 +58,7 @@ def ask_gpt(prompt):
         json={
             "model": "mistralai/mistral-7b-instruct",
             "messages": [
-                {"role": "system", "content": "أنت مساعد ذكي صوتي."},
+                {"role": "system", "content": "أنت مساعد صوتي ذكي. تحدث دائمًا باللغة العربية الفصحى."},
                 {"role": "user", "content": prompt}
             ]
         }
