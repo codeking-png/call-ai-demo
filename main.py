@@ -4,6 +4,8 @@ from twilio.twiml.voice_response import VoiceResponse, Gather
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import requests
+
 
 load_dotenv()
 
