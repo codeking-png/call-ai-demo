@@ -35,22 +35,22 @@ async def handle_call(
         try:
             gpt_reply = ask_gpt(SpeechResult)
             print(f"🤖 رد GPT: {gpt_reply}")
-            response.say(gpt_reply, language="ar-SA")
+            response.say(gpt_reply, language="ar-SA", voice="Polly.Hala")
 
-            # ✨ اطلب سؤال جديد من المستخدم بعد الرد
+            # ✨ اطلب سؤال جديد بعد الرد
             gather = Gather(input="speech", action="/call", method="POST", language="ar-SA", timeout=5)
-            gather.say("هل لديك سؤال آخر؟", language="ar-SA")
+            gather.say("هل لديك سؤال آخر؟", language="ar-SA", voice="Polly.Hala")
             response.append(gather)
-            response.say("لم أسمع شيئًا، سيتم إنهاء المكالمة.", language="ar-SA")
+            response.say("لم أسمع شيئًا، سيتم إنهاء المكالمة.", language="ar-SA", voice="Polly.Hala")
 
         except Exception as e:
             print(f"❌ GPT Error: {e}")
-            response.say("عذرًا، حدث خطأ أثناء المعالجة. حاول لاحقًا.", language="ar-SA")
+            response.say("عذرًا، حدث خطأ أثناء المعالجة. حاول لاحقًا.", language="ar-SA", voice="Polly.Hala")
     else:
         gather = Gather(input="speech", action="/call", method="POST", language="ar-SA", timeout=5)
-        gather.say("مرحباً بك، أخبرني كيف يمكنني مساعدتك؟", language="ar-SA")
+        gather.say("مرحباً بك، أخبرني كيف يمكنني مساعدتك؟", language="ar-SA", voice="Polly.Hala")
         response.append(gather)
-        response.say("لم أسمع أي شيء، يرجى المحاولة لاحقاً.", language="ar-SA")
+        response.say("لم أسمع أي شيء، يرجى المحاولة لاحقاً.", language="ar-SA", voice="Polly.Hala")
 
     return Response(content=str(response), media_type="application/xml")
 
